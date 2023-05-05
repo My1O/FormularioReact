@@ -1,9 +1,10 @@
 import "./CampoTexto.css"
 
-const CampoTexto = () =>{
+const CampoTexto = (datoTexto) =>{
+    const placeholderModificado = `${datoTexto.placeholder}...`
     return <div className="campo-texto">
-        <label>Nombre</label>
-        <input placeholder="Ingresar Nombre"/>
+        <label>{datoTexto.titulo}</label>
+        <input placeholder={placeholderModificado} required={datoTexto.required}/>
     </div>
 }
 
