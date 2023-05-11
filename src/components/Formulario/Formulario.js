@@ -1,21 +1,55 @@
+import { useState } from 'react'
 import './Formulario.css'
 import CampoTexto from '../CampoTexto'
 import ListaOpciones from '../ListaOpciones'
 import Boton from '../Boton'
-const Formulario = () =>{
+const Formulario = () => {
+
+    const [nombre, actualizarNombre] = useState("")
+    const [puesto, actualizarPuesto] = useState("")
+    const [foto, actualizarFoto] = useState("")
+    const [equipo, actualizarEquipo] = useState("")
+
 
     const manejarEnvio = (e) => {
         //console.log("Manejar el envio");
         e.preventDefault();
+        let datosAEnviar = {
+            nombre,
+            puesto,
+            foto,
+            equipo
+        }
+        console.log(datosAEnviar)
     }
     return <section className='formulario'>
         <form onSubmit={manejarEnvio}>
             <h2>Registra el formulario para crear colaborador</h2>
-            <CampoTexto titulo='Nombre' placeholder="Ingrese Nombre" required/>
-            <CampoTexto titulo='Puesto' placeholder="Ingrese Puesto" required/>
-            <CampoTexto titulo='Foto' placeholder="Ingrese Foto" required/>
-            <ListaOpciones/>
-            <Boton texto="Crear"/>
+            <CampoTexto
+                titulo='Nombre'
+                placeholder="Ingrese Nombre"
+                required
+                valor={nombre}
+                actualizarValor={actualizarNombre}
+            />
+            <CampoTexto
+                titulo='Puesto'
+                placeholder="Ingrese Puesto"
+                required
+                valor={puesto}
+                actualizarValor={actualizarPuesto}
+            />
+            <CampoTexto
+                titulo='Foto'
+                placeholder="Ingrese Foto"
+                required
+                valor={foto}
+                actualizarValor={actualizarFoto}
+            />
+            <ListaOpciones valor={equipo}
+                actualizarEquipo={actualizarEquipo}
+            />
+            <Boton texto="Crear" />
         </form>
     </section>
 }
