@@ -10,8 +10,12 @@ const Formulario = (props) => {
     const [foto, actualizarFoto] = useState("")
     const [equipo, actualizarEquipo] = useState("")
 
-    const {registrarColaborador}= props
+    const [titulo, actualizarTitulo] = useState("")
+    const [color, actualizarColor] = useState("")
 
+    const { registrarColaborador, crearEquipo} = props
+
+    //Manejar el compartamiento onclick por defecto
     const manejarEnvio = (e) => {
         //console.log("Manejar el envio");
         e.preventDefault();
@@ -23,6 +27,18 @@ const Formulario = (props) => {
         }
         registrarColaborador(datosAEnviar)
     }
+
+    //Handler: ONclick behavior by default
+    const ManejarNuevoEquipo = (e) => {
+        e.preventDefault()
+        crearEquipo( {titulo, colorPrimario: color} )
+        //se crear el equipo con los valores de titulo y color. titulo: titulo = no longer needed
+        //valores del use State
+        
+    }
+
+    //se agrego segundo formulario para crear equipo
+    //boton registrar equipo agregado
     return <section className='formulario'>
         <form onSubmit={manejarEnvio}>
             <h2>Registra el formulario para crear colaborador</h2>
@@ -52,6 +68,26 @@ const Formulario = (props) => {
                 equipos={props.equipos}
             />
             <Boton texto="Crear" />
+        </form>
+        
+        <form onSubmit={ManejarNuevoEquipo}>
+            <h2>Registra el formulario para crear el equipo</h2>
+            <CampoTexto
+                titulo='Titulo'
+                placeholder="Ingresar titulo"
+                required
+                valor={titulo}
+                actualizarValor={actualizarTitulo}
+            />
+            <CampoTexto
+                titulo='Color'
+                placeholder="Ingresar color en Hexadecimal"
+                required
+                valor={color}
+                actualizarValor={actualizarColor}
+            />
+            <Boton texto="Registrar Equipo">
+            </Boton>
         </form>
     </section>
 }

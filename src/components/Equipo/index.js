@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import Colaborador from "../Colaborador"
+import hexToRgba from "hex-to-rgba"
+
 const EquipoEstilo = styled.section`
     width: 100%;
     position: relative;
@@ -28,22 +30,25 @@ const ColorInput = styled.input`
 
 const Equipo = (props) => {
     //Destructuration
-    const { colorPrimario, colorSecundario, titulo } = props.datos
-    const { colaboradores, eliminarColaborador } = props
+    //80% - add ID as. Search by ID
+    const { colorPrimario, titulo , id} = props.datos
+    const { colaboradores, eliminarColaborador, actualizarColor} = props
 
     
     return <>
         {
             colaboradores.length > 0 &&
-            <EquipoEstilo style={{ backgroundColor: colorSecundario }}>
+            <EquipoEstilo style={{ backgroundColor: hexToRgba(colorPrimario, 0.6) }}>
+                
                 <ColorInput
                     type="color"
-                    value={colorSecundario}
+                    value={colorPrimario}
                     onChange={ (evento) => {
-                        console.log(evento.target.value)
+                        //buscamos por ID
+                        actualizarColor(evento.target.value, id)
                     }}
                 />
-                <EquipoTexto style={{ borderColor: colorPrimario }}>{titulo}</EquipoTexto>
+                <EquipoTexto style={{ borderColor: hexToRgba(colorPrimario, 0.6) }}>{titulo}</EquipoTexto>
                 <ColaboradorEstilo>
                     {
                         colaboradores.map((colaborador, index) => <Colaborador 
