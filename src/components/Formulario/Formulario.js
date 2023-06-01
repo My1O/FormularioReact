@@ -85,6 +85,7 @@ const Formulario = (props) => {
                 required
                 valor={color}
                 actualizarValor={actualizarColor}
+                type="color"
             />
             <Boton texto="Registrar Equipo">
             </Boton>

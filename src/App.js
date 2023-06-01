@@ -13,39 +13,45 @@ function App() {
   const [mostrarFormulario, actualizarFormulario] = useState(false)
   const [colaboradores, actualizarColaboradores] = useState([
     {
+      /* Agregamos fav para validar true or false and if so, show the right icon */
       id: uuid(),
       nombre: "Camilo Castro",
       puesto: "Instructor",
       foto: "https://github.com/harlandlohora.png",
-      equipo: "Front-End"
+      equipo: "Front-End",
+      fav: true
     },
     {
       id: uuid(),
       nombre: "Madison Castro",
       puesto: "Team Lead",
       foto: "https://github.com/genesysaluralatam.png",
-      equipo: "Front-End"
+      equipo: "Front-End",
+      fav: false
     },
     {
       id: uuid(),
       nombre: "Leilani Castro",
       puesto: "CEO",
       foto: "https://github.com/genesysaluralatam.png",
-      equipo: "Programacion"
+      equipo: "Programacion",
+      fav: false
     },
     {
       id: uuid(),
       nombre: "Matias Castro",
       puesto: "Programador",
       foto: "https://github.com/christianpva.png",
-      equipo: "Programacion"
+      equipo: "Programacion",
+      fav: false
     },
     {
       id: uuid(),
       nombre: "Sompopin Castro",
       puesto: "Manager",
       foto: "https://github.com/christianpva.png",
-      equipo: "Innovacion y gestion"
+      equipo: "Innovacion y gestion",
+      fav: false
     }
   ])
 
@@ -152,6 +158,18 @@ function App() {
     console.log(nuevoEquipo )
   }
 
+  // funcion para like de estados en colaboradores
+  const gustar = (id)=>{
+    console.log(id)
+    const colaboradoresActualizados = colaboradores.map( (colaborador) =>{
+      if(colaborador.id === id){
+        colaborador.fav = !colaborador.fav
+      }
+      return colaborador
+    })
+      actualizarColaboradores(colaboradoresActualizados)
+  }
+
   // Lista de equipos
   return (
     <div>
@@ -172,7 +190,7 @@ function App() {
         colaboradores={colaboradores.filter( colaborador => colaborador.equipo === equipo.titulo)}
         eliminarColaborador={eliminarColaborador}
         actualizarColor= {actualizarColor}
-        
+        gustar={gustar}
         />)
       }
       <Footer/>

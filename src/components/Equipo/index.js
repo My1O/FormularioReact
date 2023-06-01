@@ -32,7 +32,7 @@ const Equipo = (props) => {
     //Destructuration
     //80% - add ID as. Search by ID
     const { colorPrimario, titulo , id} = props.datos
-    const { colaboradores, eliminarColaborador, actualizarColor} = props
+    const { colaboradores, eliminarColaborador, actualizarColor, gustar} = props
 
     
     return <>
@@ -56,7 +56,8 @@ const Equipo = (props) => {
                         key={index} 
                         colorPrimario={colorPrimario}
                         eliminarColaborador={eliminarColaborador}
-                        
+                        gustar={gustar}
+                        //agregamos props gustar en los colaboradores
                         />)
                     }
                 </ColaboradorEstilo>
